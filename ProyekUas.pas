@@ -16,12 +16,12 @@ var
     n, i: integer;
     lanjut: char;
 
-function onsKeKg(ons: integer): real; //konv ons -> kg
+function onsKeKg(ons: integer): real;
 begin
     onsKeKg := ons / 10;
 end;
 
-function hitungOngkir(berat: real; jarak: integer): longint; //hitung ong
+function hitungOngkir(berat: real; jarak: integer): longint;
 var
     tarifBerat, tarifJarak: longint;
 begin
@@ -42,7 +42,7 @@ begin
     hitungOngkir := tarifBerat + tarifJarak;
 end;
 
-procedure inputBarang(var b: barang); //input barang
+procedure inputBarang(var b: barang); 
 begin
     write('Nama barang     : '); readln(b.nama);
     write('Berat (ons)     : '); readln(b.beratOns);
@@ -52,7 +52,7 @@ begin
     b.ongkir  := hitungOngkir(b.beratKg, b.jarak);
 end;
 
-procedure tampilBarang(b: barang; index: integer); //tampil barang
+procedure tampilBarang(b: barang; index: integer); 
 begin
     writeln(index, '. ', b.nama);
     writeln('   Berat : ', b.beratOns, ' ons (', b.beratKg:0:1, ' kg)');
@@ -60,7 +60,7 @@ begin
     writeln('   Ongkir: Rp', b.ongkir);
 end;
 
-procedure tampilSemua(var data: arrBarang; jumlah: integer); //pro tam
+procedure tampilSemua(var data: arrBarang; jumlah: integer);
 begin
     if jumlah = 0 then
     begin
@@ -77,7 +77,7 @@ begin
     end;
 end;
 
-begin //main pro
+begin
     clrscr;
     n := 0;
 
@@ -96,4 +96,5 @@ begin //main pro
     writeln('Total data barang: ', n);
     writeln;
     writeln('Terima kasih telah menggunakan program!');
+
 end.
