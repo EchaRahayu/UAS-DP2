@@ -94,7 +94,8 @@ begin
     tampilSemua(data, n);
     writeln('Total data barang: ', n);
     writeln;
-    writeln('Terima kasih telah menggunakan program!');
+    writeln('Terima kasih wok, Semoga lancar');
 
 end.
+
 
