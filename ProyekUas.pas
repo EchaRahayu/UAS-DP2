@@ -32,12 +32,12 @@ begin
     else
         tarifBerat := 50000;
 
-    if jarak <= 20 then
-        tarifJarak := 5000
-    else if jarak <= 100 then
+    if jarak <= 10 then
         tarifJarak := 15000
+    else if jarak <= 40 then
+        tarifJarak := 25000
     else
-        tarifJarak := 30000;
+        tarifJarak := 50000;
 
     hitungOngkir := tarifBerat + tarifJarak;
 end;
@@ -68,8 +68,7 @@ begin
         exit;
     end;
 
-    writeln('DAFTAR BARANG');
-    writeln('--------------------------------');
+    writeln('Daftar Barang: ');
     for i := 1 to jumlah do
     begin
         tampilBarang(data[i], i);
@@ -98,3 +97,4 @@ begin
     writeln('Terima kasih telah menggunakan program!');
 
 end.
+
