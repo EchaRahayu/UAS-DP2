@@ -52,7 +52,6 @@ begin
     if jumlah = 0 then
     begin
         writeln('Belum ada data.');
-        exit;
     end;
 
     for i := 1 to jumlah do
