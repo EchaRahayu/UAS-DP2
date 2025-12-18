@@ -1,6 +1,5 @@
 program ongbangkelkur;
 uses crt;
-
 type
     barang = record
         nama: string;
@@ -10,30 +9,28 @@ type
         ongkir: longint;
     end;
 
+    arrBarang = array[1..20] of barang;
 var
-    data: array[1..20] of barang;
+    data: arrBarang;
     n, i: integer;
     lanjut: char;
 
-function onsKeKg(ons: integer): real;
-begin
-    onsKeKg := ons / 10;
-end;
-
-function hitungOngkir(berat: real; jarak: integer): longint;
+function hitungOngkir(var b: barang): longint;
 var
     tarifBerat, tarifJarak: longint;
 begin
-    if berat <= 1 then
+    b.beratKg := b.beratOns / 10;
+
+    if b.beratKg <= 1 then
         tarifBerat := 10000
-    else if berat <= 5 then
+    else if b.beratKg <= 5 then
         tarifBerat := 25000
     else
         tarifBerat := 50000;
 
-    if jarak <= 10 then
+    if b.jarak <= 10 then
         tarifJarak := 15000
-    else if jarak <= 40 then
+    else if b.jarak <= 40 then
         tarifJarak := 25000
     else
         tarifJarak := 50000;
@@ -43,28 +40,14 @@ end;
 
 procedure inputBarang(var b: barang);
 begin
-    write('Nama barang : ');
-    readln(b.nama);
+    write('Nama barang: '); readln(b.nama);
+    write('Berat (ons): '); readln(b.beratOns);
+    write('Jarak (km): '); readln(b.jarak);
 
-    repeat
-        write('Berat (ons) : ');
-        readln(b.beratOns);
-        if b.beratOns <= 0 then
-            writeln('Berat harus lebih dari 0!');
-    until b.beratOns > 0;
-
-    repeat
-        write('Jarak (km)  : ');
-        readln(b.jarak);
-        if b.jarak <= 0 then
-            writeln('Jarak harus lebih dari 0!');
-    until b.jarak > 0;
-
-    b.beratKg := onsKeKg(b.beratOns);
-    b.ongkir  := hitungOngkir(b.beratKg, b.jarak);
+    b.ongkir := hitungOngkir(b);
 end;
 
-procedure tampilSemua(jumlah: integer);
+procedure tampilData(data: arrBarang; jumlah: integer);
 begin
     if jumlah = 0 then
     begin
@@ -72,13 +55,12 @@ begin
         exit;
     end;
 
-    writeln('--Daftar Barang--');
     for i := 1 to jumlah do
     begin
         writeln(i, '. ', data[i].nama);
-        writeln('   Berat : ', data[i].beratOns, ' ons (',
+        writeln('   Berat: ', data[i].beratOns, ' ons (',
                 data[i].beratKg:0:1, ' kg)');
-        writeln('   Jarak : ', data[i].jarak, ' km');
+        writeln('   Jarak: ', data[i].jarak, ' km');
         writeln('   Ongkir: Rp', data[i].ongkir);
         writeln;
     end;
@@ -87,10 +69,8 @@ end;
 begin
     clrscr;
     n := 0;
-
     repeat
         n := n + 1;
-        writeln;
         writeln('Input barang ke-', n);
         inputBarang(data[n]);
 
@@ -99,7 +79,7 @@ begin
     until (lanjut = 't') or (n = 20);
 
     clrscr;
-    tampilSemua(n);
+    tampilData(data, n);
     writeln('Total data barang: ', n);
-    writeln('Terima kasih kurir, semoga lancar');
+    writeln('Terima kasih wok, Semoga lancar');
 end.
